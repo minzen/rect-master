@@ -27,7 +27,6 @@ const ImageView = (props: ImageViewProps) => {
     <>
       <Box className={classes.base}>
         <HidingGrid
-          timerValue={props.timerValue}
           underlyingItemAtIndexHidden={props.underlyingItemAtIndexHidden}
         />
       </Box>

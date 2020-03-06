@@ -3,7 +3,6 @@ import { Grid } from '@material-ui/core'
 import GridHidingItem from './GridHidingItem'
 
 interface HidingGridProps {
-  timerValue: number
   underlyingItemAtIndexHidden: Array<boolean>
 }
 

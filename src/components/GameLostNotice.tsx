@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Popover from '@material-ui/core/Popover'
 import Typography from '@material-ui/core/Typography'
+import { GAME_OVER } from '../utils/constants'
 
 const useStyles = makeStyles({
   gameOver: {
@@ -22,7 +23,6 @@ const GameLostNotice = (props: GameLostNoticeProps) => {
   const [notificationOpen, setNotificationOpen] = useState(props.open)
   const [anchorEl, setAnchorEl] = useState(null)
   const id = 'gameLostNotification'
-  const GAME_OVER = 'Game Over!'
 
   const handleClose = () => {
     setNotificationOpen(false)
@@ -44,7 +44,7 @@ const GameLostNotice = (props: GameLostNoticeProps) => {
           horizontal: 'center'
         }}
       >
-        <Typography className={classes.gameOver}>{GAME_OVER} You lost!</Typography>
+        <Typography className={classes.gameOver}>{GAME_OVER}</Typography>
       </Popover>
     </div>
   )

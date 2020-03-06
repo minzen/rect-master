@@ -16,10 +16,20 @@ interface AnswerButtonsProps {
 const AnswerButtons = (props: AnswerButtonsProps) => {
   const classes = useStyles()
 
-  return (<>
-  {props.countries.map((country) => 
-    <Button key={country} variant="contained" color="primary" onClick={() => props.handleSubmit({country})} className={classes.button}>{country}</Button>
-  )}
-  </>)
+  return (
+    <>
+      {props.countries.map(country => (
+        <Button
+          key={country}
+          variant='contained'
+          color='primary'
+          onClick={() => props.handleSubmit({ country })}
+          className={classes.button}
+        >
+          {country}
+        </Button>
+      ))}
+    </>
+  )
 }
 export default AnswerButtons

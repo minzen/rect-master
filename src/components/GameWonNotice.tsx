@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Popover from '@material-ui/core/Popover'
 import Typography from '@material-ui/core/Typography'
+import { GAME_WON } from '../utils/constants'
 
 const useStyles = makeStyles({
   gameWon: {
@@ -21,7 +22,6 @@ const GameWonNotice = (props: GameWonNoticeProps) => {
   const [notificationOpen, setNotificationOpen] = useState(props.open)
   const [anchorEl, setAnchorEl] = useState(null)
   const id = 'gameWonNotification'
-  const GAME_WON = 'Well done! Your answer was correct!'
 
   const handleClose = () => {
     setNotificationOpen(false)
