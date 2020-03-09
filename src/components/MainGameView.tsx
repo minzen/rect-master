@@ -79,7 +79,7 @@ const MainGameView = () => {
   const checkGameEndStatus = () => {
     if (timerValue === 0 || gameLost) {
       return <GameLostNotice open={true} startNewGame={handleStartNewGame} />
-    } 
+    }
   }
 
   const handleSubmitAnswer = (value: any) => {
@@ -115,7 +115,7 @@ const MainGameView = () => {
     return (
       <Container maxWidth='md'>
         {checkGameEndStatus()}
-        <Grid container justify="space-between">
+        <Grid container justify='space-between'>
           <GameTimer
             setTimerValue={setTimerValue}
             timerValue={timerValue}

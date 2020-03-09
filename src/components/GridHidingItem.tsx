@@ -10,7 +10,7 @@ const useStyles = makeStyles({
   hidingItem: {
     height: 200,
     width: 200,
-    backgroundColor: '#2F4F4F'
+    backgroundColor: '#363636'
   }
 })
 

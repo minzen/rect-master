@@ -10,7 +10,7 @@ import {
 const useStyles = makeStyles({
   timerView: {
     fontSize: 40,
-    backgroundColor: '#2F4F4F',
+    backgroundColor: '#363636',
     color: '#ffffff',
     width: 80,
     height: 80,
