@@ -1,6 +1,6 @@
 # Project Rect-Master
 
-This is a simple guessing game built on ReactJS. The user is supposed to select one location of the provided one, where she thinks the photo has been shot at. The image is gradually revealed to the user. If the time runs out or the user answers incorrectly the game is ended.
+This is a simple guessing game built on ReactJS. The user sees a photo on the screen - one at a time - and she is supposed to guess where (in which country) the shown photo has been shot. There are always three options to select from. The image is gradually revealed to the user as the reactangles residing on top of the image are removed. When the image is loaded, the game timer starts ticking and the user has to be quick to deliver the correct answer. If the time on the timer runs out or the user selects an incorrect option, the game is ended.
 
 ## Building and running
 
