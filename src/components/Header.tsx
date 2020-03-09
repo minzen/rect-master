@@ -4,9 +4,9 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
   header: {
-    color: '#000000',
+    color: '#2F4F4F',
     padding: 10,
-    backgroundColor: '#2F4F4F',
+    backgroundColor: '#000000',
   }
 })
 

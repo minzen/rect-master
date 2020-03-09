@@ -11,10 +11,18 @@ const useStyles = makeStyles({
 interface AnswerButtonsProps {
   countries: Array<string>
   handleSubmit: any
+  gameLost: boolean
 }
 
 const AnswerButtons = (props: AnswerButtonsProps) => {
   const classes = useStyles()
+
+  const shouldDisable = () => {
+    if (props.gameLost) {
+      return true
+    }
+    return false
+  }
 
   return (
     <>
@@ -23,6 +31,7 @@ const AnswerButtons = (props: AnswerButtonsProps) => {
           key={country}
           variant='contained'
           color='primary'
+          disabled={shouldDisable()}
           onClick={() => props.handleSubmit({ country })}
           className={classes.button}
         >

@@ -1,51 +1,44 @@
 import React, { useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Popover from '@material-ui/core/Popover'
-import Typography from '@material-ui/core/Typography'
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle
+} from '@material-ui/core'
 import { GAME_OVER } from '../utils/constants'
 
-const useStyles = makeStyles({
-  gameOver: {
-    color: '#ff0000',
-    backgroundColor: '#2F4F4F',
-    fontSize: 46,
-    padding: 15
-  }
-})
-
 interface GameLostNoticeProps {
-  open: boolean
+  open: boolean,
+  startNewGame: any
 }
 
 // The class shows a notice about a lost game
 const GameLostNotice = (props: GameLostNoticeProps) => {
-  const classes = useStyles()
   const [notificationOpen, setNotificationOpen] = useState(props.open)
-  const [anchorEl, setAnchorEl] = useState(null)
-  const id = 'gameLostNotification'
 
   const handleClose = () => {
     setNotificationOpen(false)
   }
 
+  const handleOkClick = () => {
+    props.startNewGame()
+    setNotificationOpen(false)
+  }
+
   return (
     <div>
-      <Popover
-        id={id}
-        open={notificationOpen}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: 'center',
-          horizontal: 'center'
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center'
-        }}
-      >
-        <Typography className={classes.gameOver}>{GAME_OVER}</Typography>
-      </Popover>
+      <Dialog open={notificationOpen} onClose={handleClose} aria-labelledby="game-over-dialog-title" aria-describedby="game-over-dialog-description">
+        <DialogTitle id="game-over-dialog-title">Start a new game?</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="game-over-dialog-description">{GAME_OVER} You lose. Fortunately there always is a next game...</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">No</Button>
+          <Button onClick={handleOkClick} color="primary">Yes</Button>
+        </DialogActions>
+      </Dialog>
     </div>
   )
 }

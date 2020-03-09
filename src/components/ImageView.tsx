@@ -7,8 +7,7 @@ const images = require.context('../../images', true)
 interface ImageViewProps {
   image: string
   imageShootingPlace: string
-  timerValue: number
-  underlyingItemAtIndexHidden: Array<boolean>
+  hiddenPartsOfImage: Array<boolean>
 }
 
 // The ImageView component takes care of showing the grid on top of the image and on the other hand the actual image underneath.
@@ -27,7 +26,7 @@ const ImageView = (props: ImageViewProps) => {
     <>
       <Box className={classes.base}>
         <HidingGrid
-          underlyingItemAtIndexHidden={props.underlyingItemAtIndexHidden}
+          hiddenPartsOfImage={props.hiddenPartsOfImage}
         />
       </Box>
     </>

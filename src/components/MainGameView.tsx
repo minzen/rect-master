@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Container, makeStyles } from '@material-ui/core'
+import { Button, Container, Grid, makeStyles } from '@material-ui/core'
 import ImageView from './ImageView'
 import GameTimer from './GameTimer'
 import GameLostNotice from './GameLostNotice'
-import GameWonNotice from './GameWonNotice'
 import data from './data/data.json'
 import AnswerButtons from './AnswerButtons'
+import ScoreView from './ScoreView'
 import {
   drawRandCountry,
   drawRandCountries,
@@ -24,7 +24,19 @@ const useStyles = makeStyles({
 
 const MainGameView = () => {
   const classes = useStyles()
-  const initiallyHidden: Array<boolean> = [true, true, true, true, true, true, true, true, true]
+  const initiallyHidden: Array<boolean> = [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ]
+  const initialHiddenIndices = Array.from(Array(9).keys())
+  const [hiddenIndices, setHiddenIndices] = useState(initialHiddenIndices)
   const numberOfImages: number = data.length
   const [timerValue, setTimerValue] = useState(TIMER_INIT)
   const [img, setImg] = useState('')
@@ -35,7 +47,7 @@ const MainGameView = () => {
   ] = useState(initiallyHidden)
   const [countryOptions, setCountryOptions] = useState(Array<string>())
   const [gameLost, setGameLost] = useState(false)
-  const [gameWon, setGameWon] = useState(false)
+  const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState(0)
 
   useEffect(() => {
     initQuiz()
@@ -44,9 +56,7 @@ const MainGameView = () => {
   const initQuiz = () => {
     // Obtain a random image from the pool
     const imageIdx = Math.floor(Math.random() * numberOfImages)
-    console.log(imageIdx)
     const imageName = data[imageIdx].name
-    console.log(imageName)
     setImg(imageName)
     const imageShootingPlace = data[imageIdx].shootingplace
     setImgShootingPlace(imageShootingPlace)
@@ -67,47 +77,62 @@ const MainGameView = () => {
   }
 
   const checkGameEndStatus = () => {
-    if (!gameWon && (timerValue === 0 || gameLost)) {
-      return <GameLostNotice open={true} />
-    } else if (timerValue > 0 && gameWon) {
-      return <GameWonNotice open={true} />
-    }
+    if (timerValue === 0 || gameLost) {
+      return <GameLostNotice open={true} startNewGame={handleStartNewGame} />
+    } 
   }
 
   const handleSubmitAnswer = (value: any) => {
     const answer = value.country
     if (answer !== imgShootingPlace) {
       setGameLost(true)
+      setTimerValue(0)
+      setUnderlyingItemAtIndexHidden(initiallyHidden)
     } else if (answer === imgShootingPlace && timerValue > 0) {
-      setGameWon(true)
+      setTimerValue(0)
+      setNumberOfCorrectAnswers(numberOfCorrectAnswers + 1)
+      handleNewGuessingRound()
     }
   }
 
   const handleStartNewGame = () => {
     setUnderlyingItemAtIndexHidden(initiallyHidden)
+    setHiddenIndices(initialHiddenIndices)
     initQuiz()
     setTimerValue(TIMER_INIT)
     setGameLost(false)
-    setGameWon(false)
+    setNumberOfCorrectAnswers(0)
   }
 
-  if (img && img !== '' && countryOptions) {
+  const handleNewGuessingRound = () => {
+    setUnderlyingItemAtIndexHidden(initiallyHidden)
+    setHiddenIndices(initialHiddenIndices)
+    initQuiz()
+    setTimerValue(TIMER_INIT + 1)
+  }
+
+  if (img && img !== '') {
     return (
-      <Container maxWidth='xl'>
+      <Container maxWidth='md'>
         {checkGameEndStatus()}
-        <GameTimer
-          setTimerValue={setTimerValue}
-          timerValue={timerValue}
-          hiddenPartsOfImage={underlyingItemAtIndexHidden}
-          setHiddenPartsOfImage={setUnderlyingItemAtIndexHidden}          
-        />
+        <Grid container justify="space-between">
+          <GameTimer
+            setTimerValue={setTimerValue}
+            timerValue={timerValue}
+            hiddenPartsOfImage={underlyingItemAtIndexHidden}
+            setHiddenPartsOfImage={setUnderlyingItemAtIndexHidden}
+            hiddenIndices={hiddenIndices}
+            setHiddenIndices={setHiddenIndices}
+          />
+          <ScoreView currentScore={numberOfCorrectAnswers} />
+        </Grid>
         <ImageView
           image={img}
           imageShootingPlace={imgShootingPlace}
-          timerValue={timerValue}
-          underlyingItemAtIndexHidden={underlyingItemAtIndexHidden}
+          hiddenPartsOfImage={underlyingItemAtIndexHidden}
         />
         <AnswerButtons
+          gameLost={gameLost}
           countries={countryOptions}
           handleSubmit={handleSubmitAnswer}
         />
@@ -116,6 +141,7 @@ const MainGameView = () => {
           variant='contained'
           onClick={handleStartNewGame}
           className={classes.button}
+          color='secondary'
         >
           Start a new game
         </Button>

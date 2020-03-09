@@ -1,4 +1,5 @@
 import React from 'react'
+import { Container } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import Header from './components/Header'
 import MainGameView from './components/MainGameView'
@@ -12,12 +13,11 @@ const useStyles = makeStyles({
 const App = () => {
   const classes = useStyles()
 
-
     return (
-      <div className={classes.app}>
+      <Container className={classes.app} maxWidth="md">
         <Header />
         <MainGameView />
-      </div>
+      </Container>
     )
   }
 
