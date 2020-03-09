@@ -11,16 +11,37 @@ export const drawRandCountry = () => {
 }
 
 // Draws the desired number of country names and returns the items as String array
-export const drawRandCountries = (number) => {
+export const drawRandCountries = number => {
   const countries = []
   for (let index = 0; index < number; index++) {
     const country = drawRandCountry()
-    countries.push(country)
+    if (!countries.includes(country)) {
+      countries.push(country)
+    } else {
+      countries.push(drawRandCountry())
+    }
+  }
+  return countries
+}
+
+// Draws the desired number of country names (with the provided country name excluded) and returns the items as String array
+export const drawRandCountriesWithOneExcluded = (number, excludeCountry) => {
+  let countryNamesWithOneExcluded = countriesJson
+    .filter(item => item.name !== excludeCountry)
+    .map(item => item.name)
+  console.log(countryNamesWithOneExcluded)
+  const countries = []
+  for (let index = 0; index < number; index++) {
+    const randIdx = Math.floor(
+      Math.random() * countryNamesWithOneExcluded.length
+    )
+    const countryName = countryNamesWithOneExcluded[randIdx]
+    countries.push(countryName)
   }
   return countries
 }
 
 // Shuffles the array items
-export const shuffleArray = (arr) => {
+export const shuffleArray = arr => {
   return arr.sort(() => Math.random() - 0.5)
 }
