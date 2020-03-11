@@ -4,18 +4,24 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
   header: {
-    color: '#ffffff',
-    padding: 10,
-    backgroundColor: '#000000',
+    color: '#ffffff'
   }
 })
 
-const Header = () => {
+interface HeaderProps {
+  show: boolean
+}
+
+const Header = (props: HeaderProps) => {
   const classes = useStyles()
 
+  if (!props.show) {
+    return null
+  }
+
   return (
-    <Paper className={classes.header}>
-      <Typography variant='h4'>
+    <Paper>
+      <Typography variant='h4' className={classes.header}>
         Which country?
       </Typography>
     </Paper>

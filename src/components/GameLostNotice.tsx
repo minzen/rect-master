@@ -9,18 +9,19 @@ import {
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { GAME_OVER } from '../utils/constants'
+import theme from './Theme'
 
 const useStyles = makeStyles({
   dialogTitle: {
-    color: 'gray',
-    backgroundColor: '#363636'
+    color: 'white',
+    backgroundColor: theme.palette.primary.dark
+    // backgroundColor: '#363636'
   },
   dialog: {
-    color: 'black',
+    color: 'white',
     backgroundColor: '#696969'
   },
   dialogActions: {
-    color: 'black',
     backgroundColor: '#696969'
   }
 })
@@ -64,10 +65,10 @@ const GameLostNotice = (props: GameLostNoticeProps) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions className={classes.dialogActions}>
-          <Button onClick={handleClose} color='primary' variant='outlined'>
+          <Button onClick={handleClose} color='secondary' variant='contained'>
             No
           </Button>
-          <Button onClick={handleOkClick} color='primary' variant='outlined'>
+          <Button onClick={handleOkClick} color='primary' variant='contained'>
             Yes
           </Button>
         </DialogActions>

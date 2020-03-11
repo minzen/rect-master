@@ -2,6 +2,7 @@ import React from 'react'
 import { Box } from '@material-ui/core'
 import HidingGrid from './HidingGrid'
 import { makeStyles } from '@material-ui/core/styles'
+import { Picture } from 'react-responsive-picture'
 const images = require.context('../../images', true)
 
 interface ImageViewProps {
@@ -24,6 +25,9 @@ const ImageView = (props: ImageViewProps) => {
 
   return (
     <>
+    <Picture sources = {[
+
+    ]} />
       <Box className={classes.base}>
         <HidingGrid
           hiddenPartsOfImage={props.hiddenPartsOfImage}

@@ -14,6 +14,7 @@
     "@types/webpack-env": "^1.15.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "react-responsive-picture": "^3.2.2",
     "react-scripts": "3.4.0",
     "typescript": "^3.8.3",
     "winston": "^3.2.1"

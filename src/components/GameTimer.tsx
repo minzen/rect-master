@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { Avatar } from '@material-ui/core'
+import { Avatar, Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   GAMETIMER_TICK_MS,
@@ -10,12 +10,15 @@ import {
 const useStyles = makeStyles({
   timerView: {
     fontSize: 40,
-    backgroundColor: '#363636',
-    color: '#ffffff',
+    backgroundColor: 'gray',
+    color: 'black',
     width: 80,
     height: 80,
     marginTop: 10,
     marginBottom: 10
+  },
+  timeRemainingText: {
+    color: 'lightblue'
   }
 })
 
@@ -23,8 +26,8 @@ interface TimerProps {
   setTimerValue: Function
   timerValue: number
   hiddenPartsOfImage: Array<boolean>
-  setHiddenPartsOfImage: Function,
-  hiddenIndices: Array<number>,
+  setHiddenPartsOfImage: Function
+  hiddenIndices: Array<number>
   setHiddenIndices: Function
 }
 
@@ -32,6 +35,7 @@ interface TimerProps {
 const GameTimer = (props: TimerProps) => {
   const classes = useStyles()
   let numberOfHiddenItems = useRef<number>(NUMBER_OF_TILES)
+  // We have to save the reference to the timer as it would otherwise be lost from timer tick to another
   let timer = useRef<number>()
 
   const timerTick = () => {
@@ -87,6 +91,15 @@ const GameTimer = (props: TimerProps) => {
     stopTimer()
   }
 
-  return <Avatar className={classes.timerView}>{props.timerValue}</Avatar>
+  return (
+    <Grid container direction="column" justify="center" alignItems="center">
+      <Grid item xs={12} className={classes.timeRemainingText}>
+        Time remaining:{' '}
+      </Grid>
+      <Grid item xs={12}>
+        <Avatar className={classes.timerView}>{props.timerValue}</Avatar>
+      </Grid>
+    </Grid>
+  )
 }
 export default GameTimer
