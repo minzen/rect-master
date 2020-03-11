@@ -18,6 +18,10 @@ to start the application. The command runs the app in the development mode. Open
 
 Builds the app for production to the `build` folder.
 
-## Screenshot
+## Screenshots
 
-<img src="https://user-images.githubusercontent.com/1672059/76217621-0f5ee780-6213-11ea-9031-2a724e7cc95e.png" alt="screenshot" />
+Landing page on a mobile device:
+<img src="https://user-images.githubusercontent.com/1672059/76433129-30ab0980-63b4-11ea-9237-04222b5c08e0.png" alt="landing page on mobile" />
+
+Game screen on a browser: 
+<img src="https://user-images.githubusercontent.com/1672059/76217621-0f5ee780-6213-11ea-9031-2a724e7cc95e.png" alt="game screen" />
