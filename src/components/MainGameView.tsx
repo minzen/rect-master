@@ -6,7 +6,6 @@ import GameLostNotice from './GameLostNotice'
 import data from './data/data.json'
 import AnswerButtons from './AnswerButtons'
 import ScoreView from './ScoreView'
-import InformationView from './InformationView'
 import { drawRandCountriesWithOneExcluded, shuffleArray } from '../utils/utils'
 import {
   TIMER_INIT,
