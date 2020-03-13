@@ -6,6 +6,7 @@ import GameLostNotice from './GameLostNotice'
 import data from './data/data.json'
 import AnswerButtons from './AnswerButtons'
 import ScoreView from './ScoreView'
+import InformationView from './InformationView'
 import { drawRandCountriesWithOneExcluded, shuffleArray } from '../utils/utils'
 import {
   TIMER_INIT,
@@ -20,6 +21,8 @@ const useStyles = makeStyles({
 
 interface MainGameViewProps {
   show: boolean
+  height: number
+  width: number
 }
 
 const MainGameView = (props: MainGameViewProps) => {
@@ -41,6 +44,8 @@ const MainGameView = (props: MainGameViewProps) => {
   }, [])
 
   const initQuiz = () => {
+    setItemAtIndexHidden(initiallyHidden)
+    setHiddenIndices(initialHiddenIndices)
     // Obtain a random image from the pool
     const imageIdx = Math.floor(Math.random() * numberOfImages)
     const imageName = data[imageIdx].name
@@ -79,8 +84,6 @@ const MainGameView = (props: MainGameViewProps) => {
   }
 
   const handleStartNewGame = () => {
-    setItemAtIndexHidden(initiallyHidden)
-    setHiddenIndices(initialHiddenIndices)
     initQuiz()
     setTimerValue(TIMER_INIT)
     setGameLost(false)
@@ -88,12 +91,9 @@ const MainGameView = (props: MainGameViewProps) => {
   }
 
   const handleNewGuessingRound = () => {
-    setItemAtIndexHidden(initiallyHidden)
-    setHiddenIndices(initialHiddenIndices)
     initQuiz()
     setTimerValue(TIMER_INIT + 1)
   }
-
 
   if (!props.show) {
     return null
@@ -127,6 +127,8 @@ const MainGameView = (props: MainGameViewProps) => {
         >
           <Grid item xs={12}>
             <ImageView
+              height={props.height}
+              width={props.width}
               image={img}
               imageShootingPlace={imgShootingPlace}
               hiddenPartsOfImage={itemAtIndexHidden}

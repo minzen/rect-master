@@ -5,6 +5,7 @@ import Header from './components/Header'
 import MainGameView from './components/MainGameView'
 import InfoView from './components/InfoView'
 import theme from './components/Theme'
+import useWindowDimensions from './utils/WindowDimensions'
 
 const useStyles = makeStyles({
   app: {
@@ -15,6 +16,7 @@ const useStyles = makeStyles({
 const App = () => {
   const classes = useStyles()
   const [showGame, setShowGame] = useState(false)
+  const { height, width } = useWindowDimensions()
 
   return (
     <ThemeProvider theme={theme}>
@@ -30,7 +32,7 @@ const App = () => {
           <Grid item xs={12}>
             <Header show={showGame} />
           </Grid>
-          <MainGameView show={showGame} />
+          <MainGameView width={width} height={height} show={showGame} />
         </Grid>
       </Container>
     </ThemeProvider>
