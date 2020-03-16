@@ -42,7 +42,7 @@ const GameLostNotice = (props: GameLostNoticeProps) => {
   const classes = useStyles()
 
   const handleClose = () => {
-    return <Link to='/'></Link>
+    setNotificationOpen(false)
   }
 
   const handleOkClick = () => {

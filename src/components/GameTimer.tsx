@@ -92,7 +92,7 @@ const GameTimer = (props: TimerProps) => {
   }
 
   return (
-    <Grid container direction="column" justify="center" alignItems="center">
+    <Grid container direction='column' justify='center' alignItems='center'>
       <Grid item xs={12} className={classes.timeRemainingText}>
         Time remaining:{' '}
       </Grid>

@@ -50,7 +50,11 @@ const ImageView = (props: ImageViewProps) => {
     <>
       <Picture sources={[]} />
       <Box className={classes.base}>
-        <HidingGrid height={props.height} width={props.width} hiddenPartsOfImage={props.hiddenPartsOfImage} />
+        <HidingGrid
+          height={props.height}
+          width={props.width}
+          hiddenPartsOfImage={props.hiddenPartsOfImage}
+        />
       </Box>
     </>
   )

@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   },
 
   scoreText: {
-    color: 'lightblue',
+    color: 'lightblue'
   }
 })
 

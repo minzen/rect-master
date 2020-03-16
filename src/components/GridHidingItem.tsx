@@ -3,8 +3,8 @@ import { Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 interface ItemProps {
-  visible: boolean,
-  width: number,
+  visible: boolean
+  width: number
   height: number
 }
 
@@ -15,6 +15,7 @@ const GridHidingItem = (props: ItemProps) => {
     const mobileSize = 100
     let styleObj
 
+    // Two sizes of grid items, i.e. 200 and 100 pixels
     if (props.width < 600) {
       styleObj = {
         item: {
@@ -26,7 +27,7 @@ const GridHidingItem = (props: ItemProps) => {
           width: mobileSize,
           backgroundColor: '#363636'
         }
-      }  
+      }
     } else {
       styleObj = {
         item: {
@@ -38,9 +39,8 @@ const GridHidingItem = (props: ItemProps) => {
           width: defaultSize,
           backgroundColor: '#363636'
         }
-      }  
+      }
     }
-
 
     return makeStyles(styleObj)()
   }

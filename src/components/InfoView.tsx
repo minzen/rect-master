@@ -31,7 +31,9 @@ const InfoView = () => {
       </Grid>
       <Grid item xs={12}>
         <Button color='primary' variant='contained'>
-          <Link to='/game' className={classes.button}>Start game</Link>
+          <Link to='/game' className={classes.button}>
+            Start game
+          </Link>
         </Button>
       </Grid>
     </Grid>
