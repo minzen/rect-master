@@ -15,6 +15,9 @@ import {
 const useStyles = makeStyles({
   button: {
     margin: 5
+  },
+  topArea: {
+    backgroundColor: '#141516'
   }
 })
 
@@ -97,7 +100,7 @@ const MainGameView = (props: MainGameViewProps) => {
     return (
       <>
         {checkGameEndStatus()}
-        <Grid container direction='row' justify='center' alignItems='center'>
+        <Grid container direction='row' justify='center' alignItems='center' className={classes.topArea}>
           <Grid item xs={6}>
             <GameTimer
               setTimerValue={setTimerValue}

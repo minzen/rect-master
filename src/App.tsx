@@ -10,7 +10,7 @@ import useWindowDimensions from './utils/WindowDimensions'
 
 const useStyles = makeStyles({
   app: {
-    backgroundColor: '#424242'
+    backgroundColor: 'black'
   }
 })
 
@@ -34,9 +34,7 @@ const App = () => {
                 alignItems='center'
                 className={classes.app}
               >
-                <Grid item xs={12}>
-                  <Header />
-                </Grid>
+                <Header />
                 <MainGameView width={width} height={height} />
               </Grid>
             </Route>
