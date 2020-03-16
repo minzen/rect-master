@@ -9,14 +9,13 @@ import {
   DialogTitle
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { GAME_OVER } from '../utils/constants'
+import { GAME_OVER, START_A_NEW_GAME } from '../utils/constants'
 import theme from './Theme'
 
 const useStyles = makeStyles({
   dialogTitle: {
     color: 'white',
     backgroundColor: theme.palette.primary.dark
-    // backgroundColor: '#363636'
   },
   dialog: {
     color: 'white',
@@ -62,14 +61,14 @@ const GameLostNotice = (props: GameLostNoticeProps) => {
           id='game-over-dialog-title'
           className={classes.dialogTitle}
         >
-          Start a new game?
+          {START_A_NEW_GAME}
         </DialogTitle>
         <DialogContent className={classes.dialog}>
           <DialogContentText
             id='game-over-dialog-description'
             className={classes.dialog}
           >
-            {GAME_OVER} You lose. Fortunately there always is a next game...
+            {GAME_OVER}
           </DialogContentText>
         </DialogContent>
         <DialogActions className={classes.dialogActions}>

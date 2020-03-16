@@ -25,7 +25,7 @@ const GridHidingItem = (props: ItemProps) => {
         hidingItem: {
           height: mobileSize,
           width: mobileSize,
-          backgroundColor: '#363636'
+          backgroundColor: '#141516'
         }
       }
     } else {
@@ -37,7 +37,7 @@ const GridHidingItem = (props: ItemProps) => {
         hidingItem: {
           height: defaultSize,
           width: defaultSize,
-          backgroundColor: '#363636'
+          backgroundColor: '#141516'
         }
       }
     }
