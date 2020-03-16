@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import {
   Button,
   Dialog,
@@ -23,6 +24,10 @@ const useStyles = makeStyles({
   },
   dialogActions: {
     backgroundColor: '#696969'
+  },
+  linkInButton: {
+    color: 'white',
+    textDecoration: 'none'
   }
 })
 
@@ -37,7 +42,7 @@ const GameLostNotice = (props: GameLostNoticeProps) => {
   const classes = useStyles()
 
   const handleClose = () => {
-    setNotificationOpen(false)
+    return <Link to='/'></Link>
   }
 
   const handleOkClick = () => {
@@ -53,7 +58,10 @@ const GameLostNotice = (props: GameLostNoticeProps) => {
         aria-labelledby='game-over-dialog-title'
         aria-describedby='game-over-dialog-description'
       >
-        <DialogTitle id='game-over-dialog-title' className={classes.dialogTitle}>
+        <DialogTitle
+          id='game-over-dialog-title'
+          className={classes.dialogTitle}
+        >
           Start a new game?
         </DialogTitle>
         <DialogContent className={classes.dialog}>
@@ -65,8 +73,10 @@ const GameLostNotice = (props: GameLostNoticeProps) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions className={classes.dialogActions}>
-          <Button onClick={handleClose} color='secondary' variant='contained'>
-            No
+          <Button color='secondary' variant='contained'>
+            <Link to='/' className={classes.linkInButton}>
+              No
+            </Link>
           </Button>
           <Button onClick={handleOkClick} color='primary' variant='contained'>
             Yes

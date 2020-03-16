@@ -8,16 +8,8 @@ const useStyles = makeStyles({
   }
 })
 
-interface HeaderProps {
-  show: boolean
-}
-
-const Header = (props: HeaderProps) => {
+const Header = () => {
   const classes = useStyles()
-
-  if (!props.show) {
-    return null
-  }
 
   return (
     <Paper>

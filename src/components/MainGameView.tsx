@@ -19,7 +19,6 @@ const useStyles = makeStyles({
 })
 
 interface MainGameViewProps {
-  show: boolean
   height: number
   width: number
 }
@@ -74,7 +73,6 @@ const MainGameView = (props: MainGameViewProps) => {
     if (answer !== imgShootingPlace) {
       setGameLost(true)
       setTimerValue(0)
-      setItemAtIndexHidden(initiallyHidden)
     } else if (answer === imgShootingPlace && timerValue > 0) {
       setTimerValue(0)
       setNumberOfCorrectAnswers(numberOfCorrectAnswers + 1)
@@ -83,19 +81,16 @@ const MainGameView = (props: MainGameViewProps) => {
   }
 
   const handleStartNewGame = () => {
+    setTimerValue(0)
     initQuiz()
-    setTimerValue(TIMER_INIT)
     setGameLost(false)
     setNumberOfCorrectAnswers(0)
+    setTimerValue(TIMER_INIT)
   }
 
   const handleNewGuessingRound = () => {
     initQuiz()
     setTimerValue(TIMER_INIT + 1)
-  }
-
-  if (!props.show) {
-    return null
   }
 
   if (img && img !== '') {

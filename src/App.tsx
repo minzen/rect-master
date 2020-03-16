@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import { Container, Grid, ThemeProvider } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import Header from './components/Header'
@@ -15,27 +16,34 @@ const useStyles = makeStyles({
 
 const App = () => {
   const classes = useStyles()
-  const [showGame, setShowGame] = useState(false)
   const { height, width } = useWindowDimensions()
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container maxWidth='xl'>
-        <InfoView show={showGame === false} setShowGame={setShowGame} />
-        <Grid
-          container
-          direction='column'
-          justify='center'
-          alignItems='center'
-          className={classes.app}
-        >
-          <Grid item xs={12}>
-            <Header show={showGame} />
-          </Grid>
-          <MainGameView width={width} height={height} show={showGame} />
-        </Grid>
-      </Container>
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <Container maxWidth='xl'>
+          <Switch>
+            <Route exact path='/'>
+              <InfoView />
+            </Route>
+            <Route path='/game'>
+              <Grid
+                container
+                direction='column'
+                justify='center'
+                alignItems='center'
+                className={classes.app}
+              >
+                <Grid item xs={12}>
+                  <Header />
+                </Grid>
+                <MainGameView width={width} height={height} />
+              </Grid>
+            </Route>
+          </Switch>
+        </Container>
+      </ThemeProvider>
+    </Router>
   )
 }
 
